@@ -10,8 +10,13 @@
 #include "audio_player.h"
 #include "log.h"
 
-#define CONFIG_FILENAME "DeviceInterface_GUID.config"
-#define ADB_EXECUTABLE "adb.exe"
+#define CONFIG_FILENAME "others\\DeviceInterface_GUID.config"
+#ifdef _M_AMD64
+#define ADB_EXECUTABLE "others\\64\\adb.exe"
+#else
+#define ADB_EXECUTABLE "others\\32\\adb.exe"
+#endif
+
 #define KILL_SERVER_COMMAND "kill-server"
 
 #define ADB_GUID_KEY "ADB_DeviceInterface_GUID="
@@ -683,13 +688,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		//try to kill the adb server, since it occupies the adb interface which makes following attempts to open the same interface fail
 		system(path);
-		
-
+				
 		if (strcpy_s(pathEnding, sizeof(path) - pathLengthToDirectory, CONFIG_FILENAME))
 		{
 			LOGE("The path to this executable seems too long. Try to store it at a different location.");
 			break;
 		}				
+		
+		
 		//need to skip the leading '"'
 		ifs.open(path+1);
 		if (!ifs.good())
