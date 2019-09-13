@@ -1,6 +1,6 @@
 # winusb-usbaudio
 
-This project is aimed at implementing the similar function as provided by [USBaudio](https://github.com/rom1v/usbaudio) on Windows system. Feel free to fork and whatever modification you like.
+This project is aimed at implementing the similar function as provided by [USBaudio](https://github.com/rom1v/usbaudio) on Windows system. Feel free to fork and modify it to meet your need.
 
 ## Prerequisites
 
