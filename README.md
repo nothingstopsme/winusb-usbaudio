@@ -31,10 +31,10 @@ Newer versions of VS could also be viable, but I have never tried them.
 1. Plug you device into your PC. Make sure "Developer options" is enabled.
 1. Open "Device Manager", locate the ADB Interface of your device, and check the VID, PID, and MI of it in the "Detail" tab.
 1. Open "Registry" (by executing regedit.exe), under "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB" locate the entry which matches the VID, PID, and MI of the ADB Interface. Expand that entry and there will be a subfolder named "Device Parameters" containing a setting named "DeviceInterfaceGUIDs".
-1. Replace the value of ADB_DeviceInterface_GUID in "usbaudio/others/DeviceInterface_GUID.config" with the value of "DeviceInterfaceGUIDs" found in Step 4. 
+1. Replace the value of ADB_DeviceInterface_GUID in "others/DeviceInterface_GUID.config" with the value of "DeviceInterfaceGUIDs" found in Step 4. 
 1. Run this programme for the first time. The purpose of this run is to put your device into accessory mode, and it is normal to see it fail and exit with an error message.
 1. While your device is in accessory mode, open "Device Manager" and there will be a new audio controller device appearing under the category of "Sound, video, and game controllers" (possibly with a yellow exclamation). Use zadig (I used zadig-2.4) to replace the driver of it with a WINUSB one.
-1. After the driver replacement, that device should be moved into the category of "Universal Serial Bus Devices" and work properly. Now repeat Step 3 ~ 4 for that device, and update the value of "Audio_DeviceInterface_GUID" in "usbaudio/others/DeviceInterface_GUID.config" with the value of "DeviceInterfaceGUIDs" found.
+1. After the driver replacement, that device should be moved into the category of "Universal Serial Bus Devices" and work properly. Now repeat Step 3 ~ 4 for that device, and update the value of "Audio_DeviceInterface_GUID" in "others/DeviceInterface_GUID.config" with the value of "DeviceInterfaceGUIDs" found.
 1. All set. Start this programme again and you should hear the sound of your device from your PC's speakers now.
 
    
