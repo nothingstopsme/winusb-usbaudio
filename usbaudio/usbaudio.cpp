@@ -523,10 +523,14 @@ BOOL EnableAOA(const DEVICE_DATA &deviceData)
 #define AUDIO_MODE_NO_AUDIO               0
 #define AUDIO_MODE_S16LSB_STEREO_44100HZ  1
 
-#define AOA_PRODUCT_ID_LOWERBOUND 0x2D02
-#define AOA_PRODUCT_ID_UPPERBOUND 0x2D05
+//#define AOA_PRODUCT_ID_LOWERBOUND 0x2D02
+//#define AOA_PRODUCT_ID_UPPERBOUND 0x2D05
 
-	if (deviceData.ProductID >= AOA_PRODUCT_ID_LOWERBOUND && deviceData.ProductID <= AOA_PRODUCT_ID_UPPERBOUND)
+//this product id corresponds the accessory mode with the accessory interface, adb interface, and audio interface enabled
+#define TARGET_AOA_PRODUCT_ID 0x2D05
+
+	//if (deviceData.ProductID >= AOA_PRODUCT_ID_LOWERBOUND && deviceData.ProductID <= AOA_PRODUCT_ID_UPPERBOUND)
+	if (deviceData.ProductID == TARGET_AOA_PRODUCT_ID)
 	{
 		LOGI("AOA version 2 has already been enabled");
 		return true;
@@ -570,6 +574,7 @@ BOOL EnableAOA(const DEVICE_DATA &deviceData)
 		return false;
 	}
 
+	
 	packet.RequestType = AOA_REQUEST_TYPE;
 	packet.Request = AOA_START_ACCESSORY;
 	packet.Value = 0; //unused
@@ -581,7 +586,7 @@ BOOL EnableAOA(const DEVICE_DATA &deviceData)
 		LOGE("Fail to start the accessory interface");
 		return false;
 	}
-
+	
 	//waiting a short moment for audio interface getting ready
 	Sleep(3000);
 	return true;
